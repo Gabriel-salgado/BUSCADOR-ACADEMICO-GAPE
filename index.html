@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Socket.IO chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font: 13px Helvetica, Arial;
+        }
+        
+        form {
+            background: #000;
+            padding: 3px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        #m {
+            max-width: 79%;
+        }
+        
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 100%;
+            margin-right: 0.5%;
+        }
+        
+        button {
+            width: 20%;
+            background: rgb(85, 86, 180);
+            border: none;
+            padding: 10px;
+        }
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            width: 500px;
+            background-color: white;
+            padding: 0;
+            margin-left: 100px;
+            height: 120px;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+        
+        .vaca {
+            float: right;
+            width: 950px;
+        }
+        
+        .cuadroVerde {
+            float: left;
+            background-color: rgb(23, 71, 23);
+            width: 400px;
+            height: 650px;
+        }
+        
+        .h1 {
+            margin-left: 35%;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: rgb(199, 1, 139);
+        }
+        
+        .h2 {
+            margin-left: 20%;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: rgb(199, 1, 139);
+        }
+        
+        .div {
+            margin: 50px;
+            background-color: rgb(23, 71, 23);
+            width: 240px;
+            height: 60px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .div2 {
+            margin: 50px;
+            background-color: rgb(23, 71, 23);
+            width: 700px;
+            height: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .letra {
+            font-size: 60px;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cuadroVerde">
+        <div style="height: 20px;"></div>
+        <div class="letra">PREGUNTA SOBRE TU CARRERA...</div>
+        <div style="height:200px"></div>
+        <img style="margin-left: 80px;border-radius:20px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMiplFNyp1rCG17X5irOP4HBGgO73BxjYxsg&usqp=CAU" width="250px" height="200px">
+    </div>
+    <div class="vaca">
+        <div style="height: 50px;"></div>
+        <h1 class="h1"> <label style="margin-left: 40px;"> BUSCADOR</label> <br>ACADEMICO GAPE</h1>
+        <div class="div">
+            <h1 class="h2"> <label>¡pregunta!</label> </h1>
+        </div>
+        <form action="">
+            <input id="m" autocomplete="off" /><button>Buscar</button>
+        </form>
+        <div class="div2">
+            <div style="height: 60px;" class="h1">
+                <h1>Respuestas</h1>
+            </div>
+            <ul id="messages"></ul>
+            <button style="margin-left:300px;background-color: rgba(255, 0, 179, 0.425); margin-top:25px" onclick="tt()">Limpiar</button>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script>
+            $(function() {
+                var socket = io();
+                $('form').submit(function(e) {
+                    e.preventDefault(); // prevents page reloading
+                    socket.emit('chat message', $('#m').val());
+                    $('#m').val('');
+                    return false;
+                });
+                socket.on('chat message', function(msg) {
+
+                    $('#messages').append($('<li>').text(msg));
+                });
+            });
+
+            function tt() {
+                location.reload();
+            }
+        </script>
+    </div>
+</body>
+
+</html>
