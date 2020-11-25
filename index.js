@@ -34,7 +34,7 @@ let bd = [{
         respuesta: "Teléfono: 781-80-05"
     },
     {
-        pregunta: "¿Cual es el pensum de la Carrera de la lic en informática?",
+        pregunta: "¿Cual es el pensum actual de la Carrera de la licenciatura en informática con enfasis en medios audio visuales?",
         respuesta: "Siga el siguiente enlace https://drive.google.com/file/d/1JWEdZF0Nznx8wLVuEP7l2OAzNRyBOI31/view?usp=drivesdk"
     },
 ];
