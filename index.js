@@ -38,11 +38,27 @@ let bd = [{
         respuesta: "Siga el siguiente enlace https://drive.google.com/file/d/1JWEdZF0Nznx8wLVuEP7l2OAzNRyBOI31/view?usp=drivesdk"
     },
 ];
+
+
+
+
+
+
+
+
+
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
+
+
+
+
+
+
+
 
 
 io.on('connection', (socket) => {
